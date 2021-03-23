@@ -1,11 +1,11 @@
 resource "aws_instance" "web" {
-  ami           = "ami-038f1ca1bd58a5790"
-  instance_type = "t2.micro"
+  ami           = var.ami
+  instance_type = var.instance_type
   vpc_security_group_ids = [aws_security_group.sg_1.id] 
   subnet_id = aws_subnet.public_subnet_1.id
-  key_name = "tf_key"
+  key_name = var.key_name
 
   tags = {
-    Name = "Ec2_usingTerraform"
+    Name = "${var.prefix} Ec2_usingTerraform"
   }
 }
